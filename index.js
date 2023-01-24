@@ -2,10 +2,11 @@ const inquirer = require('inquirer');
 
 async function init() {
     let teamObject = {
-        // teamStaff: {
-        //     engineers: [],
-        //     interns: []
-        // }
+        teamManager: {},
+        teamStaff: {
+            engineers: [],
+            interns: []
+        }
     }
     await inquireManager(teamObject)
     const nameList = await inquireNameList()
@@ -13,6 +14,7 @@ async function init() {
         await inquireStaffInfo(nameList[i], teamObject)
     }
     console.log('Generating HTML...')
+    await generateHTML(teamObject)
 }
 
 function inquireManager(teamObject) {
@@ -100,7 +102,7 @@ function inquireStaffInfo(name, team) {
                     massage: 'Staff GitHub Username:',
                     default: 'default',
                     when: (answer) => {
-                        if (answer.staff_type === 'Engineer') return true
+                        if (answer.type === 'Engineer') return true
                     }
                 },
                 {
@@ -109,14 +111,14 @@ function inquireStaffInfo(name, team) {
                     massage: 'Staff School:',
                     default: 'default',
                     when: (answer) => {
-                        if (answer.staff_type === 'Intern') return true
+                        if (answer.type === 'Intern') return true
                     }
                 }
             ])
             .then(answer => {
                 answer.name = name
-                if (answer.staff_type === 'Intern') team.teamStaff.interns.push(answer)
-                if (answer.staff_type === 'Engineer') team.teamStaff.engineers.push(answer)
+                if (answer.type === 'Intern') team.teamStaff.interns.push(answer)
+                if (answer.type === 'Engineer') team.teamStaff.engineers.push(answer)
                 resolve()
             })
     })
@@ -124,22 +126,51 @@ function inquireStaffInfo(name, team) {
 
 init()
 
+const EXAMPLE = {
+    "teamManager": {
+        "name": "default",
+        "employee_id": "default",
+        "email": "default",
+        "office_number": "default"
+    },
+    "teamStaff": {
+        "engineers": [
+            {
+                "type": "Engineer",
+                "id": "default",
+                "email": "default",
+                "github": "default",
+                "name": "benjamin"
+            },
+            {
+                "type": "Engineer",
+                "id": "default",
+                "email": "default",
+                "github": "default",
+                "name": "maggie"
+            }
+            ],
+        "interns": [
+            {
+                "type": "Intern",
+                "id": "default",
+                "email": "default",
+                "school": "default",
+                "name": "kate"
+            },
+            {
+                "type": "Intern",
+                "id": "default",
+                "email": "default",
+                "school": "default",
+                "name": "erin"
+            }
+        ]
+    }
+}
 
-// GIVEN a command-line application that accepts user input
-// WHEN I am prompted for my team members and their information
-// THEN an HTML file is generated that displays a nicely formatted team roster based on user input
-// WHEN I click on an email address in the HTML
-// THEN my default email program opens and populates the TO field of the email with the address
-// WHEN I click on the GitHub username
-// THEN that GitHub profile opens in a new tab
-
-// WHEN I start the application
-// THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
-// WHEN I enter the team manager’s name, employee ID, email address, and office number
-// THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
-// WHEN I select the engineer option
-//               THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
-// WHEN I select the intern option
-//               THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
-// WHEN I decide to finish building my team
-// THEN I exit the application, and the HTML is generated
+function generateHTML(team) {
+    return new Promise(resolve => {
+        
+    })
+}
