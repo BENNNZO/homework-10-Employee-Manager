@@ -2,18 +2,17 @@ const inquirer = require('inquirer');
 
 async function init() {
     let teamObject = {
-        teamManager: {},
-        teamStaff: {
-            engineers: [],
-            interns: []
-        }
+        // teamStaff: {
+        //     engineers: [],
+        //     interns: []
+        // }
     }
     await inquireManager(teamObject)
-    let nameList = await inquireNameList()
-    console.log(nameList)
+    const nameList = await inquireNameList()
     for (let i = 0; i < nameList.length; i++) {
         await inquireStaffInfo(nameList[i], teamObject)
     }
+    console.log('Generating HTML...')
 }
 
 function inquireManager(teamObject) {
@@ -48,8 +47,6 @@ function inquireManager(teamObject) {
             ])
             .then(answers => {
                 teamObject.teamManager = answers
-                console.log(teamObject)
-                console.log(answers)
                 resolve()
             })
     })
