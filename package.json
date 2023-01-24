@@ -1,0 +1,23 @@
+{
+  "name": "employee-manager",
+  "version": "0.0.1",
+  "description": "Creates a html page that lists out all employee contact options",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BENNNZO/homework-10-Employee-Manager.git"
+  },
+  "author": "Benjamin Phillips",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BENNNZO/homework-10-Employee-Manager/issues"
+  },
+  "homepage": "https://github.com/BENNNZO/homework-10-Employee-Manager#readme",
+  "dependencies": {
+    "inquirer": "^8.2.5"
+  }
+}
