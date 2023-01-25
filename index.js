@@ -29,26 +29,22 @@ function inquireManager(teamObject) {
                 {
                     type: 'input',
                     name: 'name',
-                    message: 'Name:',
-                    default: 'default'
+                    message: 'Name:'
                 },
                 {
                     type: 'input',
                     name: 'employee_id',
-                    message: 'Employee ID:',
-                    default: 'default'
+                    message: 'Employee ID:'
                 },
                 {
                     type: 'input',
                     name: 'email',
-                    message: 'Email Adress:',
-                    default: 'default'
+                    message: 'Email Adress:'
                 },
                 {
                     type: 'input',
                     name: 'office_number',
-                    message: 'Office Number:',
-                    default: 'default'
+                    message: 'Office Number:'
                 }
             ])
             .then(answers => {
@@ -61,12 +57,12 @@ function inquireManager(teamObject) {
 
 function inquireNameList() {
     return new Promise(resolve => {
+        console.log('? TEAM STAFF INFORMATION')
         inquirer
             .prompt({
                 type: 'input',
                 name: 'name_list',
-                message: 'Type out list of all names seperated by commas:',
-                default: 'benjamin, maggie, kate, erin'
+                message: 'Type out list of all names seperated by commas:'
             })
             .then(nameList => {
                 nameList = nameList.name_list.split(",")
@@ -93,20 +89,17 @@ function inquireStaffInfo(name, team) {
                 {
                     type: 'input',
                     name: 'id',
-                    massage: 'Staff ID:',
-                    default: 'default'
+                    massage: 'Staff ID:'
                 },
                 {
                     type: 'input',
                     name: 'email',
-                    massage: 'Staff Email:',
-                    default: 'default'
+                    massage: 'Staff Email:'
                 },
                 {
                     type: 'input',
                     name: 'github',
                     massage: 'Staff GitHub Username:',
-                    default: 'default',
                     when: (answer) => {
                         if (answer.type === 'Engineer') return true
                     }
@@ -115,7 +108,6 @@ function inquireStaffInfo(name, team) {
                     type: 'input',
                     name: 'school',
                     massage: 'Staff School:',
-                    default: 'default',
                     when: (answer) => {
                         if (answer.type === 'Intern') return true
                     }
