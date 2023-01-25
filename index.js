@@ -138,10 +138,10 @@ function generateHtmlContent(team) {
             team.teamStaff.engineers.forEach((e, i) => {
                 engineerSections.push(`
                     <div class="engineer">
-                        <p class="name">${e.name}</p>
-                        <p class="id">${e.id}</p>
-                        <p class="email">${e.email}</p>
-                        <p class="github">${e.github}</p>
+                        <p class="left">NAME:</p><p class="name">${e.name}</p>
+                        <p class="left">ID:</p><p class="id">${e.id}</p>
+                        <p class="left">EMAIL:</p><a href = "mailto:${e.email}">${e.email}</a>
+                        <p class="left">GITHUB:</p><a href="https://github.com/${e.github}">https://github.com/${e.github}</a>
                     </div>
                 `)
             })
@@ -152,10 +152,10 @@ function generateHtmlContent(team) {
             team.teamStaff.interns.forEach((e, i) => {
                 internSections.push(`
                     <div class="engineer">
-                        <p class="name">${e.name}</p>
-                        <p class="id">${e.id}</p>
-                        <a href = "mailto:${e.email}">${e.email}</a>
-                        <p class="schoo">${e.school}</p>
+                        <p class="left">NAME:</p><p class="name">${e.name}</p>
+                        <p class="left">ID:</p><p class="id">${e.id}</p>
+                        <p class="left">EMAIL:</p><a href = "mailto:${e.email}">${e.email}</a>
+                        <p class="left">SCHOOL:</p><p class="schoo">${e.school}</p>
                     </div>
                 `)
             })
@@ -205,7 +205,7 @@ function generateHtmlContent(team) {
 
 function generateHtmlFile(content) {
     return new Promise(resolve => {
-        fs.writeFile('./test.html', content, err => {
+        fs.writeFile('./index.html', content, err => {
             if (err) {
                 console.error(err);
             } else resolve()
